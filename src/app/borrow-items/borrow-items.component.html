@@ -1,0 +1,82 @@
+<div class="container">
+  <div class="title"><h2>Borrow an Item</h2></div>
+  <br /><br />
+
+  <div class="d-flex flex-row-reverse align-items-end">
+    <button class="btn btn-primary" [routerLink]="['../']">Back</button>
+  </div>
+
+  <form #borrowForm = "ngForm">
+
+    <div class="row">
+      <div style="font-weight: bold;" class="col-4">
+        Select the type of the item to borrow
+      </div>
+      <div class="col-4">
+        <div class="form-group">
+          <select
+            class="form-control"
+            id="type"
+            name="type"
+            [(ngModel)]="selectType"
+          >
+            <option [value]="'book'">Book</option>
+            <option [value]="'dvd'">DVD</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <br />
+
+    <div class="card mb-2">
+      <div class="card-header">Borrower Details</div>
+      <div class="card-body">
+        <div class="row">
+          <label>ISBN:</label>
+          <input
+            name="isbn"
+            id="isbn"
+            class="form-control"
+            [(ngModel)]="item.isbn"
+            #isbn="ngModel"
+         required />
+        </div>
+        <br/>
+        <div class="row">
+          <label>Borrower Id:</label>
+          <input #brwRef="ngModel" required class="form-control" name="borrowerId" ngModel />
+          <div [hidden]="brwRef.valid || brwRef.pristine" class="alert alert-danger">Please enter the borrower Id</div>
+        </div>
+        <br />
+        <div class="row">
+          <label>Name of the Borrower:</label>
+          <input #nameRef="ngModel" required class="form-control" name="borrowerName" ngModel />
+          <div [hidden]="nameRef.valid || nameRef.pristine" class="alert alert-danger">Please enter the borrower name</div>
+        </div>
+        <br/>
+        <div class="row">
+            <label>Email of the Borrower:</label>
+            <input #emailRef="ngModel" required class="form-control" name="borrowedEmail" ngModel />
+            <div [hidden]="emailRef.valid || emailRef.pristine" class="alert alert-danger">Please enter the borrower email</div>
+          </div>
+          <br/>
+          <div class="row">
+              <label>Contact number of the Borrower:</label>
+              <input #contactRef="ngModel" required class="form-control" name="borrowerContact" ngModel />
+              <div [hidden]="contactRef.valid || contactRef.pristine" class="alert alert-danger">Please enter the borrower contact No</div>
+            </div>
+            <br/>
+        <div class="row">
+          <div class="row mt-2 col-1">
+            <button
+              class="btn btn-primary"
+              (click)="borrowItem(borrowForm.value)"
+            >
+              Borrow Item
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

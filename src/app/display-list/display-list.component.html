@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="title">
+      <h2>Display Items</h2>
+    </div> <br><br/>
+
+    <div class= "d-flex flex-row-reverse align-items-end">
+        <button class= "btn btn-primary"  [routerLink]="['../']">Back</button>
+      </div> <br>
+<div >
+  <div>
+    <table class =" table table-bordered">
+        <thead>
+            <tr>
+                <th scope = "col">ISBN</th>
+                <th scope = "col">Title</th>
+                <th scope = "col">Item type</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let libItem of libraryItems">
+                <td scope="row" >{{libItem.isbn}}</td>
+                <td>{{libItem.itemTitle}}</td>
+                <td>{{libItem.itemType}}</td>
+            </tr>
+          </tbody>
+    </table>
+
+  </div>
+
+</div>

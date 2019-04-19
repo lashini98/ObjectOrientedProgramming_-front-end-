@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="title">
+      <h2>Generate Report:</h2>
+    </div> <br><br/>
+
+    <div class= "d-flex flex-row-reverse align-items-end">
+        <button class= "btn btn-primary"  [routerLink]="['../']">Back</button>
+      </div> <br>
+<div >
+  <div>
+    <table class =" table table-bordered">
+        <thead>
+            <tr>
+                <th scope = "col">ISBN</th>
+                <th scope = "col">Borrower name</th>
+                <th scope = "col">Item type</th>
+                <th scope = "col">Borrowed Date</th>
+                <th scope = "col">Returned Date</th>
+                <th scope = "col">Payment</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let report of reportData">
+                <td scope="row" >{{report.w1698510_isbn}}</td>
+                <td>{{report.w1698510_userName}}</td>
+                <td>{{report.w1698510_itemType == true ? 'Book':'DVD'}}</td>
+                <td>{{report.w1698510_borrow_Date}}</td>
+                <td>{{report.w1698510_return_Date}}</td>
+                <td>{{report.w1698510_itemAmount == 'null' ? '-':report.w1698510_itemAmount}}</td>
+            </tr>
+          </tbody>
+    </table>
+
+  </div>
+
+</div>

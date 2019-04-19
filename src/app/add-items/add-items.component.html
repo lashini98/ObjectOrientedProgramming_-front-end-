@@ -1,0 +1,137 @@
+<div class="container">
+  <div class="title">
+    <h2>Add Item</h2>
+  </div><br />
+
+  <div class="d-flex flex-row-reverse align-items-end">
+    <button class="btn btn-primary" [routerLink]="['../']">Back</button>
+  </div>
+
+  <form #userForm="ngForm">
+    <div class="row">
+      <div style="font-weight: bold;" class="col-3">Select the type of the item</div>
+      <div class="col-4">
+        <div class="form-group">
+          <select #typeRef required class="form-control" id="type" name="type" [(ngModel)]="selectType">
+            {{typeRef.className}}
+            <option [value]="'book'" [disabled]="slots.bookCount == 0">Book</option>
+            <option [value]="'dvd'" [disabled]="slots.dvdCount == 0">DVD</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class = "row">
+      <div class = "col font-weight-light font-italic">Number of free Book slots {{slots.bookCount}}</div>
+      <div class = "col font-weight-light font-italic">Number of free DVD slots {{slots.dvdCount}}</div>
+    </div> <br>
+
+    <div class="card mb-2">
+      <div class="card-header">Basic Item Details</div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col">
+            <label>ISBN :</label> <input #isbnRef="ngModel" required class="form-control" name="w1698510_isbn" ngModel />
+            <div [hidden]="isbnRef.valid || isbnRef.pristine" class="alert alert-danger">Please enter the ISBN</div>
+            <div class="text-danger"></div>
+          </div>
+          <div class="col">
+            <label>Title:</label> <input #titleRef="ngModel" required class="form-control" name="w1698510_title"
+              ngModel />
+            <div [hidden]="titleRef.valid || titleRef.pristine" class="alert alert-danger">Please enter the title</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <label>Sector:</label> <input #sectorRef="ngModel" required class="form-control" name="w1698510_sector"
+              ngModel />
+            <div [hidden]="sectorRef.valid || sectorRef.pristine" class="alert alert-danger">Please enter the sector</div>
+          </div>
+          <div class="row col">
+            <div class="input-group">
+
+              <dl-date-time-picker startView="day" maxView="year" minView="minute" minuteStep="5" name="" [(ngModel)]="selectedDate">
+              </dl-date-time-picker>
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary calendar" type="button"></button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div> <br />
+
+    <div class="card mb-3" *ngIf="selectType == 'book'">
+      <div class="card-header">Book Details</div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col">
+            <label>Author:</label> <input #authorRef="ngModel" required class="form-control" name="w1698510_bookAuthor"
+              ngModel />
+            <div [hidden]="authorRef.valid || authorRef.pristine" class="alert alert-danger">Please enter the author</div>
+          </div>
+          <div class="col">
+            <label>Publisher:</label> <input #publisherRef="ngModel" required class="form-control" name="w1698510_bookPublisher"
+              ngModel />
+            <div [hidden]="publisherRef.valid || publisherRef.pristine" class="alert alert-danger">Please enter the
+              publisher</div>
+          </div>
+          <div class="col">
+            <label>Total pages:</label> <input #totalRef="ngModel" required class="form-control" name="w1698510_total_Pages"
+              ngModel />
+            <div [hidden]="totalRef.valid || totalRef.pristine" class="alert alert-danger">Please enter the total pages</div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="row mt-2 col-1">
+            <button class="btn btn-primary" (click)="save(userForm.value)">Save Book Item</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card mb-3" *ngIf="selectType == 'dvd'">
+      <div class="card-header">DVD Details</div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col">
+            <label>Sub Titles:</label> <input #subtitlesRef="ngModel" required class="form-control" name="w1698510_availSubtitles"
+              ngModel />
+            <div [hidden]="subtitlesRef.valid || subtitlesRef.pristine" class="alert alert-danger">Please enter the
+              subtitles</div>
+          </div>
+          <div class="col">
+            <label>Languages:</label> <input #langRef="ngModel" required class="form-control" name="w1698510_availLanguages"
+              ngModel />
+            <div [hidden]="langRef.valid || langRef.pristine" class="alert alert-danger">Please enter the languages</div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <label>Producer:</label> <input #prodRef="ngModel" required class="form-control" name="w1698510_dvdProducer"
+              ngModel />
+            <div [hidden]="prodRef.valid || prodRef.pristine" class="alert alert-danger">Please enter the producer</div>
+          </div>
+          <div class="col">
+            <label>Actors:</label>
+            <div class="col" *ngFor="let items of actors; let i = index">
+              <label>{{actors[i]}}</label>
+            </div>
+            <input #actorRef="ngModel" required class="form-control" name="w1698510_dvdActors" [(ngModel)]="actor" />
+            <div [hidden]="actorRef.valid || actorRef.pristine" class="alert alert-danger">Please enter the actor</div>
+            <button class="addBtn" [disabled]="actor == ''" (click)="addActors()"><i class="fa fa-plus-square"
+                aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+        <div class="col">
+          <div class="row mt-2 col-1">
+            <button class="btn btn-primary" (click)="save(userForm.value)">Save DVD Item</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </form>

@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="title">
+    <h2>Return Item</h2>
+  </div> <br>
+
+  <div class= "d-flex flex-row-reverse align-items-end">
+      <button class= "btn btn-primary"  [routerLink]="['../']">Back</button>
+    </div> <br>
+
+  <form #returnForm="ngForm">
+
+ <div class="card mb-2">
+     <div class="card-header">
+        Basic Item Details of the item to be returned
+     </div>
+   <div class="card-body">
+     <div class="row">
+        <div class="col">
+         <label>ISBN:</label>
+            <input #isbnRef="ngModel" required class="form-control" name="isbn" ngModel/>
+            <div [hidden]="isbnRef.valid || isbnRef.pristine" class="alert alert-danger">Please enter the ISBN</div>
+         </div> <br>
+ <div class="col">
+      <label>Title:</label>
+        <input #titleRef="ngModel" required class="form-control" name="title" ngModel />
+        <div [hidden]="titleRef.valid || titleRef.pristine" class="alert alert-danger">Please enter the title</div>
+      </div>
+   </div> <br>
+     <div class="row">
+       <div class="col-3">Select the type of the item</div>
+          <div class="col-4">
+             <div class="form-group">
+               <select class='form-control' id="type" name="type" ngModel>
+                 <option [value]="'book'">Book</option>
+                  <option [value]="'dvd'">DVD</option>
+                </select>
+              </div>
+            </div>
+     </div> <br>
+     <div class = "col">
+        <div class = "row mt-2 col-1">
+            <button class = "btn btn-primary" (click) = "returnItem(returnForm.value.isbn)" >Return Item</button>
+        </div>
+    </div>
+   </div>
+</div>

@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="title">
+    <h2>Delete Item</h2>
+  </div> <br/>
+
+  <div class= "d-flex flex-row-reverse align-items-end">
+      <button class= "btn btn-primary"  [routerLink]="['../']">Back</button>
+    </div>
+
+  <form #deleteForm="ngForm">
+
+    <div class="card mb-2">
+      <div class="card-header">
+        Basic Item Details
+      </div>
+
+      <div class="card-body">
+          <div class="row">
+              <div style="font-weight: bold;" class="col-3">Select the type of the item</div>
+              <div class="col-4">
+                <div class="form-group">
+                  <select class='form-control' id="type" name="type" ngModel>
+                    <option [value]="'book'">Book</option>
+                    <option [value]="'dvd'">DVD</option>
+                  </select>
+                </div>
+              </div>
+            </div> <br>
+
+        <div class="row">
+          <label>ISBN:</label>
+          <input  #isbnRef="ngModel" required class="form-control" name="isbn" ngModel/>
+          <div [hidden]="isbnRef.valid || isbnRef.pristine" class="alert alert-danger">Please enter the ISBN</div>
+        </div><br>
+        <div class="col">
+            <div class="row mt-2 col-1">
+              <button class="btn btn-primary" (click)="deleteItem(deleteForm.value.isbn)">Delete Item</button>
+            </div>
+      </div>
+
